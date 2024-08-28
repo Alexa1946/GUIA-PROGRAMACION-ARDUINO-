@@ -1,0 +1,28 @@
+const int motorPin = 9; 
+const int joystickY = A1; 
+void setup() {
+  pinMode(motorPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int joystickValue = analogRead(joystickY); 
+  int pwmValue;
+
+  
+  if (joystickValue < 400) { 
+    pwmValue = map(joystickValue, 0, 400, 255, 0); 
+  } else if (joystickValue > 600) { 
+    pwmValue = map(joystickValue, 600, 1023, 0, 255); 
+  } else {
+    pwmValue = 0; 
+  }
+
+  analogWrite(motorPin, pwmValue); 
+  
+
+  Serial.print("PWM Value: ");
+  Serial.println(pwmValue);
+  
+  delay(100);
+}
