@@ -1,0 +1,22 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+void setup() {
+  lcd.begin(16, 2);
+}
+
+void loop() {
+  String nombre = "Juanita Leon";
+  int len = nombre.length();
+  
+  for (int i = 0; i < len + 16; i++) {
+    lcd.clear();
+    if (i < 16) {
+      lcd.print(nombre.substring(0, i));
+    } else {
+      lcd.print(nombre.substring(i - 15, i));
+    }
+    delay(300);
+  }
+}
